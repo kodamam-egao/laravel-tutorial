@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/folders/{id}/tasks', 'Taskcontroller@index')->name('index');
+
+
+Route::get('/{id}',[App\Http\Controllers\Taskcontroller::class,'index'])->name('tasks.index');
+
+//laravel8.0からの新しいルーティング設定
+//Route::get('/',[App\Http\Controllers\Taskcontroller::class,'index']);
+
+//この記述方法でも通る
+//Route::get('/', 'App\Http\Controllers\Taskcontroller@index')->name('index');
+
+
