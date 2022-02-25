@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class FoldersTableSeeder extends Seeder
+class FolderTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Folder;
+use App\Models\Folder;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
