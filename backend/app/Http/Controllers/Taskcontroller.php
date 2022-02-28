@@ -19,7 +19,11 @@ class Taskcontroller extends Controller
         $tasks = $current_folder->tasks()->get();
 
         //view(テンプレートファイル名,テンプレートに関するデータ)
-        return view('tasks/index',['folders'=>$folders,'current_folder_id' => $id,]);
+        return view('tasks/index', [
+            'folders' => $folders,
+            'current_folder_id' => $current_folder->id,
+            'tasks' => $tasks,
+        ]);
 
     }
 }
