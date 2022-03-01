@@ -10,6 +10,6 @@ class Folder extends Model
     //use HasFactory;
     public function tasks()
     {
-        return $this->hasMany('App\Task');
+        return $this->hasMany(Task::class);
     }
 }

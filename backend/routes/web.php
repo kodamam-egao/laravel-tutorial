@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/{id}',[App\Http\Controllers\Taskcontroller::class,'index'])->name('tasks.index');
 
+Route::get('/folders/create',[App\Http\Controllers\FolderController::class,'showCreateForm'])->name('folders.create');
+Route::post('/folders/create',[App\Http\Controllers\FolderController::class,'create']);
+
+
+
 //laravel8.0からの新しいルーティング設定
 //Route::get('/',[App\Http\Controllers\Taskcontroller::class,'index']);
 
