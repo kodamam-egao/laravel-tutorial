@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateFolder;
 use App\Models\Folder;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class FolderController extends Controller
         return view('folders/create');
     }
 
-    public function create(Request $request)
+    public function create(CreateFolder $request)
     {
         //モデルの永続化(DBに書き込む処理)
         $folder=new Folder();
