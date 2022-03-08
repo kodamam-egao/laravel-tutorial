@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,19 +16,37 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/folders/{id}/tasks', 'Taskcontroller@index')->name('index');
 
 
-Route::get('/{id}',[App\Http\Controllers\Taskcontroller::class,'index'])->name('tasks.index');
+Route::middleware('auth')->group(function () {
+    Route::get('/', [App\Http\Controllers\HomeController::class,'index'])->name('home');
 
-//フォルダ作成機能ルーティング
-Route::get('/folders/create',[App\Http\Controllers\FolderController::class,'showCreateForm'])->name('folders.create');
-Route::post('/folders/create',[App\Http\Controllers\FolderController::class,'create']);
+    Route::get('/folders/{id}/tasks',[App\Http\Controllers\Taskcontroller::class,'index'])->name('tasks.index');
 
-//タスク作成機能ルーティング
-Route::get('/folders/{id}/tasks/create',[App\Http\Controllers\TaskController::class,'showCreateForm'])->name('tasks.create');
-Route::post('/folders/{id}/tasks/create', [App\Http\Controllers\TaskController::class,'create']);
+    //フォルダ作成機能ルーティング
+    Route::get('/folders/create',[App\Http\Controllers\FolderController::class,'showCreateForm'])->name('folders.create');
+    Route::post('/folders/create',[App\Http\Controllers\FolderController::class,'create']);
 
-//タスク編集機能ルーティング
-Route::get('/folders/{id}/tasks/{task_id}/edit', [App\Http\Controllers\TaskController::class,'showEditForm'])->name('tasks.edit');
-Route::post('/folders/{id}/tasks/{task_id}/edit', [App\Http\Controllers\TaskController::class,'edit']);
+    //タスク作成機能ルーティング
+    Route::get('/folders/{id}/tasks/create',[App\Http\Controllers\Taskcontroller::class,'showCreateForm'])->name('tasks.create');
+    Route::post('/folders/{id}/tasks/create', [App\Http\Controllers\Taskcontroller::class,'create']);
+
+    //タスク編集機能ルーティング
+    Route::get('/folders/{id}/tasks/{task_id}/edit', [App\Http\Controllers\Taskcontroller::class,'showEditForm'])->name('tasks.edit');
+    Route::post('/folders/{id}/tasks/{task_id}/edit', [App\Http\Controllers\Taskcontroller::class,'edit']);
+
+});
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('auth')->name('dashboard');
+
+
+require __DIR__.'/auth.php';
+
+
 
 
 //laravel8.0からの新しいルーティング設定
