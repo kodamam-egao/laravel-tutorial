@@ -12,9 +12,9 @@ class Task extends Model
      * 状態定義
      */
     const STATUS = [
-        1 => [ 'label' => '未着手', 'class' => 'label-danger' ],
-        2 => [ 'label' => '着手中', 'class' => 'label-info' ],
-        3 => [ 'label' => '完了', 'class' => '' ],
+        1 => ['label' => '未着手', 'class' => 'label-danger'],
+        2 => ['label' => '着手中', 'class' => 'label-info'],
+        3 => ['label' => '完了', 'class' => ''],
     ];
 
     /**
@@ -36,15 +36,15 @@ class Task extends Model
 
     public function getStatusClassAttribute()
     {
-    // 状態値
-    $status = $this->attributes['status'];
+        // 状態値
+        $status = $this->attributes['status'];
 
-    // 定義されていなければ空文字を返す
-    if (!isset(self::STATUS[$status])) {
-        return '';
-    }
+        // 定義されていなければ空文字を返す
+        if (!isset(self::STATUS[$status])) {
+            return '';
+        }
 
-    return self::STATUS[$status]['class'];
+        return self::STATUS[$status]['class'];
     }
 
     public function getFormattedDueDateAttribute()
@@ -52,14 +52,13 @@ class Task extends Model
         return Carbon::createFromFormat('Y-m-d', $this->attributes['due_date'])
             ->format('Y/m/d');
     }
-
 }
 
 class Person extends Model
 {
     public function getGenderTextAttribute()
     {
-        switch($this->attributes['gender']) {
+        switch ($this->attributes['gender']) {
             case 1:
                 return 'male';
             case 2;
